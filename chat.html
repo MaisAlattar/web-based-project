@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#datetime {
+    font-size: 18px;
+    text-align: right;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+    </style>
+  <script>
+    function validateForm() {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var age = document.getElementById('age').value;
+    var quantity = document.getElementById('quantity').value;
+    var gender = document.querySelector('input[name="gender"]:checked');
+    var income = document.getElementById('income').value;
+    var interests = document.querySelectorAll('input[name="interests"]:checked');
+    var comments = document.getElementById('comments').value;
+
+    if (name === '' || email === '' || age === '' || quantity === '' || gender === null || income === '' || interests.length === 0 || comments === '') {
+        alert('All fields must be filled out');
+        return false;
+    }
+
+    // Additional validation criteria can be added
+
+    return true;
+}
+function updateDateTime() {
+    var dateTimeElement = document.getElementById('datetime');
+    var now = new Date();
+
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+    var formattedDateTime = now.toLocaleDateString('en-US', options);
+
+    dateTimeElement.textContent = formattedDateTime;
+}
+
+// Update date and time every second
+setInterval(updateDateTime, 1000);
+
+// Initial update
+updateDateTime();
+
+  </script>
+</head>
+<body>
+
+    <div id="datetime"></div>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="form.html">Form</a></li>
+        </ul>
+    </nav>
+    <div id="datetime"></div>
+
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1" required>
+
+        <label for="quantity">Item Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" required>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female">Female</label>
+
+        <label for="income">Income:</label>
+        <input type="number" id="income" name="income" min="0" required>
+
+        <label>Interests:</label>
+        <input type="checkbox" id="reading" name="interests" value="reading">
+        <label for="reading">Reading</label>
+        <input type="checkbox" id="traveling" name="interests" value="traveling">
+        <label for="traveling">Traveling</label>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+
+ 
+   
+</body>
+</html>
